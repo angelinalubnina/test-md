@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="card">
-      <DataTable :value="rows" showGridlines tableStyle="max-width: 60rem; margin: auto" rowHover stripedRows>
+      <DataTable :value="rows" showGridlines tableStyle="max-width: 60rem; margin: auto; margin-top: 15px" rowHover stripedRows>
         <Column
           v-for="column in columns"
           :key="column.id"

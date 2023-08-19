@@ -1,7 +1,30 @@
-# Vue 3 + Vite
+# Reports
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Приложение предоставляет возможность отобразить данные в виде таблицы в соответствии с выбранным типом отчета.
 
-## Recommended IDE Setup
+## Требования
+- Node.js
+- npm 
+## Технологии
+- JavaScript
+- Vue
+- Primevue
+- Pinia
+## Установка
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+1. Перейдите в папку, где будет храниться приложение с помощью терминала и команды:
+```
+cd ./полный путь до папки
+```
+2. Клонируйте репозиторий:
+```
+git clone https://github.com/angelinalubnina/test-md.git
+```
+3. Установите зависимость:
+```
+npm install
+```
+4. Запустить приложение:
+```
+npm run dev
+```

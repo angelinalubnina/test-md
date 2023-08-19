@@ -1,12 +1,12 @@
 <template>
   <div style="display: flex; flex-direction: column; align-items: center;">
-    <p style="margin:auto; text-align: center;">dasdsad</p>
+    <h1 style="margin-bottom: 15px">Reports</h1>
     <Dropdown
         v-model="selectedReportTest"
         :options="reports"
         @change="onChangeSelect"
         optionLabel="name"
-        style="text-align: center;margin:auto"
+        style=""
         class="w-full md:w-14rem"
         />
     <div>
@@ -44,7 +44,7 @@ function parseJson(reportsJSON) {
 </script>
 
 <style scoped>
-Dropdown {
-  margin: auto;
+body {
+  margin-bottom: 15px;
 }
 </style>
