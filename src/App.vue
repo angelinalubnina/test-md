@@ -1,50 +1,47 @@
 <template>
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <h1 style="margin-bottom: 15px">Reports</h1>
+  <div id="reports">
+    <h1>Reports</h1>
     <Dropdown
-        v-model="selectedReportTest"
+        v-model="selectedReport"
         :options="reports"
         @change="onChangeSelect"
         optionLabel="name"
-        style=""
-        class="w-full md:w-14rem"
         />
-    <div>
-      <table-component></table-component>
-    </div>
+    <table-component></table-component>
+    <p>* Столбцы, выравнивание которых было задано по центру в подготовленных данных, обозначены зеленым цветом.</p>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import TableComponent from './components/UI/TableComponent.vue';
-import {obj1, obj2, obj3} from './utils/consts';
+import {reportFromServer1, reportFromServer2, reportFromServer3} from './utils/consts';
 import { useReportStore } from './stores/reportStore';
 
 const reportStore = useReportStore();
 
-const reportsJSON = [obj1, obj2, obj3] 
 const reports = [] 
-parseJson(reportsJSON)
+parseJson()
 
-const selectedReportTest = ref(reports[0])
-reportStore.selectedReport = selectedReportTest.value
+const selectedReport = ref(reports[0])
+reportStore.selectedReport = selectedReport.value
 
 const onChangeSelect = () => {
-  reportStore.selectedReport = selectedReportTest.value
+  reportStore.selectedReport = selectedReport.value
 }
 
-function parseJson(reportsJSON) {
-  for(let i =1; i < 4; i++) {
-    let a = reportsJSON[i - 1]
-    reports.push({"name" : `obj${i}`, "report" : JSON.parse(a)})
+function parseJson() {
+  const JSONReports = [reportFromServer1, reportFromServer2, reportFromServer3] 
+  for(let i = 0; i < JSONReports.length; i++) {
+    reports.push({"name" : `Report ${i + 1}`, "report" : JSON.parse(JSONReports[i])})
   }
   reportStore.reports = reports
 }
 </script>
 
 <style scoped>
-body {
-  margin-bottom: 15px;
+#reports {
+  display: flex; 
+  flex-direction: column; align-items: center;
 }
 </style>

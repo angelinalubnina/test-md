@@ -1,22 +1,15 @@
 <template>
   <div>
     <div class="card">
-      <DataTable :value="rows" showGridlines tableStyle="max-width: 60rem; margin: auto; margin-top: 15px" rowHover stripedRows>
+      <DataTable :value="rows" showGridlines tableStyle=" margin: auto; margin-top: 15px" resizableColumns>
         <Column
           v-for="column in columns"
           :key="column.id"
           :field="column.caption"
           :header="column.caption"
-          :style="{
-            'text-align': column.align ? column.align :
-                column.type === 'string'
-                ? 'left'
-                : column.type === 'int' || column.type === 'float'
-                ? 'right'
-                : column.type === 'boolean'
-                ? 'center'
-                : 'left',
-          }"
+          :bodyStyle=getBackgroundColor(column)
+          :style="{ 
+            'text-align': getTextAlignment(column)}"
         />
       </DataTable>
     </div>
@@ -38,16 +31,13 @@ let columns = computed(() => {
 });
 
 let rows = computed(() => {
-  let rows3 = selectedReport.value.report.data;
+  const rowsSelectedReport = selectedReport.value.report.data;
   let data = [];
-  for (const row of rows3) {
+  for (const row of rowsSelectedReport) {
     let obj = {};
     for (let i = 0; i < row.length; i++) {
-      let r = row[i];
-      console.log(typeof r);
-      if (typeof r === "object") {
-        let w = row[i].d;
-        obj[columns.value[i].caption] = w;
+      if (typeof row[i] === "object") {
+        obj[columns.value[i].caption] = row[i].d
       } else {
         obj[columns.value[i].caption] = row[i];
       }
@@ -57,8 +47,30 @@ let rows = computed(() => {
   return data;
 });
 
-</script>
+function getTextAlignment(column) {
+  if(column.align) {
+    return column.align
+  } else if (column.type === 'string') {
+    return 'left'
+  } else if (column.type === 'int' || column.type === 'float') {
+    return 'right'
+  } else if (column.type === 'boolean') {
+    return 'center'
+  } else {
+    return 'left'
+  }
+}
 
+function getBackgroundColor(column) {
+  if(column.align) {
+    return 'background-color: rgba(138, 255, 138, 0.5)'
+  } else {
+    return ''
+  }
+}
+
+
+</script>
 
 <style scoped>
 </style>

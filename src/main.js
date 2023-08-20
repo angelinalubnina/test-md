@@ -4,7 +4,6 @@ import PrimeVue from 'primevue/config';
 import PrimeVueComponents from './components/PrimeVueComponents'
 import { createPinia } from 'pinia'
 
-// import './style.css'
 import "primevue/resources/themes/lara-light-indigo/theme.css";
 
 const app = createApp(App)
